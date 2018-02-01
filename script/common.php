@@ -170,7 +170,6 @@ $db_updates = array(
         "CREATE TABLE IF NOT EXISTS `Faucetinabox_Address_Locks` ( `address` VARCHAR(60) NOT NULL PRIMARY KEY, `locked_since` TIMESTAMP NOT NULL );",
     ],
     67 => [
-        "ALTER TABLE `Faucetinabox_Refs` DROP COLUMN `balance`;",
         "INSERT IGNORE INTO `Faucetinabox_Settings` (`name`, `value`) VALUES ('ip_white_list', ''), ('update_last_check', '');",
     ]
 );
