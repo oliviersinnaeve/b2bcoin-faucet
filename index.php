@@ -533,11 +533,13 @@ if (array_key_exists('address', $_POST) && $data['enabled'] && $data['eligible']
                 $q->execute(array(trim($_GET["r"])));
                 $q = $sql->prepare("INSERT IGNORE INTO Faucetinabox_Addresses (`address`, `ref_id`, `last_used`) VALUES (?, (SELECT id FROM Faucetinabox_Refs WHERE address = ?), CURRENT_TIMESTAMP())");
                 $q->execute(array(trim($_POST['address']), trim($_GET['r'])));
+                $q = $sql->prepare("UPDATE Faucetinabox_Addresses SET `ref_id`=(SELECT id FROM Faucetinabox_Refs WHERE address = ?) WHERE address = ?");
+                $q->execute(array(trim($_GET['r']), trim($_POST['address'])));
             }
             $refamount = floatval($data['referral'])*$reward/100;
             $q = $sql->prepare("SELECT address FROM Faucetinabox_Refs WHERE id = (SELECT ref_id FROM Faucetinabox_Addresses WHERE address = ?)");
             $q->execute(array(trim($_POST['address'])));
-            if ($ref = $q->fetch()) {
+            if ($ref = $q->fetch()) {                    Jep
                 if (!in_array(trim($ref[0]), $security_settings['address_ban_list'])) {
                     $fb->sendReferralEarnings(trim($ref[0]), $refamount, getIP());
                 }

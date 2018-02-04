@@ -132,7 +132,7 @@ class B2BFaucet {
                 // 'html' => '<div class="alert alert-success">' . htmlspecialchars("%.12f", $amount/1000000000000) . ' B2B was sent to you <a target="_blank" href="https://api.b2bcoin.xyz/b2bcoin/api/faucet/check/' . rawurlencode($to) . '">on wallet.b2bcoin.xyz</a>.</div>',
                 // 'html_coin' => '<div class="alert alert-success">' . htmlspecialchars(rtrim(rtrim(sprintf("%.12f", $amount/1000000000000), '0'), '.')) . ' '.$this->currency.' was sent to you <a target="_blank" href="https://api.b2bcoin.xyz/b2bcoin/api/faucet/check/' . rawurlencode($to) . '">on wallet.b2bcoin.xyz</a>.</div>',
                 'balance' => $r["balance"],
-                'balance_bitcoin' => $r["balance_bitcoin"],
+                //'balance_bitcoin' => $r["balance_bitcoin"],
                 'response' => json_encode($r)
             );
         }
