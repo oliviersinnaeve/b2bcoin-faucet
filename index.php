@@ -387,7 +387,7 @@ if (time() - $data['last_balance_check'] > 60*10) {
 
 
 // Set unit name
-$data['unit'] = 'bitoshi';
+$data['unit'] = 'B2B';
 if ($data["currency"] == 'DOGE')
     $data["unit"] = 'DOGE';
 
@@ -518,7 +518,7 @@ if (array_key_exists('address', $_POST) && $data['enabled'] && $data['eligible']
             if (!empty($ret['balance'])) {
                 $q = $sql->prepare("UPDATE Faucetinabox_Settings SET `value` = ? WHERE `name` = 'balance'");
 
-                if ($data['unit'] == 'bitoshi')
+                if ($data['unit'] == 'B2B')
                     $data['balance'] = $ret['balance'];
                 else
                     $data['balance'] = $ret['balance_bitcoin'];
@@ -539,13 +539,13 @@ if (array_key_exists('address', $_POST) && $data['enabled'] && $data['eligible']
             $refamount = floatval($data['referral'])*$reward/100;
             $q = $sql->prepare("SELECT address FROM Faucetinabox_Refs WHERE id = (SELECT ref_id FROM Faucetinabox_Addresses WHERE address = ?)");
             $q->execute(array(trim($_POST['address'])));
-            if ($ref = $q->fetch()) {   
+            if ($ref = $q->fetch()) {                    
                 if (!in_array(trim($ref[0]), $security_settings['address_ban_list'])) {
                     $fb->sendReferralEarnings(trim($ref[0]), $refamount, getIP());
                 }
             }
 
-            if ($data['unit'] == 'bitoshi')
+            if ($data['unit'] == 'B2B')
                 $data['paid'] = $ret['html'];
             else
                 $data['paid'] = $ret['html_coin'];
