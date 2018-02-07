@@ -237,7 +237,7 @@ $admin_template = <<<TEMPLATE
                     <p class="hidden" id="rewards-desc-js">
                         How much coins users can get from you? You can set multiple rewards using "Add reward" button. Amount can be either a number (ex. <code>100</code>) or a range (ex. <code>100-500</code>). Chance must be in percentage between 1 and 100. Sum of all chances must be equal 100%.
                     </p>
-                    <p>Enter values in bitoshi (1 bitoshi of B2B = 0.000000000001 xCOIN).</p>
+                    <p>Enter values in B2B (e.g. 0.0001).</p>
                     <input id="rewards-raw" type="text" class="form-control" name="rewards" value="<:: rewards ::>">
                     <div id="rewards-box" class="hidden">
                         <div class="alert alert-info">
@@ -458,7 +458,7 @@ These lists should be saved in <code>/libs/ips/cloudflare.txt</code> and <code>/
                 <h2>Manually send coins</h2>
                 <div class="form-group">
                     <p class="alert alert-info">You can use the form below to send coins to given address manaully</p>
-                    <label for="" class="control-label">Amount in bitoshi:</label>
+                    <label for="" class="control-label">Amount in B2B:</label>
                     <input type="text" class="form-control" name="send_coins_amount" value="1" id="input_send_coins_amount">
                     <label for="" class="control-label">Currency:</label>
                     <input type="text" class="form-control" name="send_coins_currency" value="<:: currency ::>" disabled>
@@ -467,7 +467,7 @@ These lists should be saved in <code>/libs/ips/cloudflare.txt</code> and <code>/
                 </div>
                 <div class="form-group">
                     <div class="alert alert-info">
-                        Are you sure you would like to send <span id="send_coins_satoshi">0</span> bitoshi (<span id="send_coins_bitcoins">0.000000000000</span> <:: currency ::>) to <span id="send_coins_address">address</span>?
+                        Are you sure you would like to send <span id="send_coins_satoshi">0</span> B2B (<span id="send_coins_bitcoins">0.000000000000</span> <:: currency ::>) to <span id="send_coins_address">address</span>?
                         <input class="btn btn-primary pull-right" style="margin-top: -7px;" type="submit" name="send_coins" value="Yes, send coins">
                     </div>
                 </div>
@@ -1049,7 +1049,7 @@ var RewardsSystem = {
         });
 
         $('#rewards-raw').val(raw);
-        $('#rewards-preview').text(preview + ' ' + ($('#currency').val() == 'DOGE' ? 'DOGE' : 'bitoshi'));
+        $('#rewards-preview').text(preview + ' ' + ($('#currency').val() == 'DOGE' ? 'DOGE' : 'B2B'));
 
         if (parseFloat(new_chance_sum.toFixed(2)) != '100') {
             $('.rewards-alert').removeClass('hidden');
@@ -1236,7 +1236,7 @@ $curl_warning_template = <<<TEMPLATE
 TEMPLATE;
 
 $send_coins_success_template = <<<TEMPLATE
-<p class="alert alert-success">You sent {{amount}} bitoshi to <a href="https://api.b2bcoin.xyz/b2bcoin/api/faucet/check/{{address}}" target="_blank">{{address}}</a>.</p>
+<p class="alert alert-success">You sent {{amount}} B2B to <a href="https://api.b2bcoin.xyz/b2bcoin/api/faucet/check/{{address}}" target="_blank">{{address}}</a>.</p>
 <script> $(document).ready(function(){ $('.nav-tabs a[href="#send-coins"]').tab('show'); }); </script>
 TEMPLATE;
 
@@ -1245,7 +1245,7 @@ $faucet_disabled_template = <<<TEMPLATE
 TEMPLATE;
 
 $send_coins_error_template = <<<TEMPLATE
-<p class="alert alert-danger">There was an error while sending {{amount}} bitoshi to "{{address}}": <u>{{error}}</u></p>
+<p class="alert alert-danger">There was an error while sending {{amount}} B2B to "{{address}}": <u>{{error}}</u></p>
 <script> $(document).ready(function(){ $('.nav-tabs a[href="#send-coins"]').tab('show'); }); </script>
 TEMPLATE;
 
