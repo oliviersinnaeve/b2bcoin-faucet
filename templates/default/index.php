@@ -129,7 +129,7 @@ margin: auto;
                 <?php if($data["page"] != 'user_page'): ?>
                 <h1><?php echo $data["name"]; ?></h1>
                 <h2><?php echo $data["short"]; ?></h2>
-                <p class="alert alert-info">Balance: <?php echo $data["balance"]." ".$data["unit"]; ?></p>
+                <p class="alert alert-info">Faucet balance: <?php echo ($data["balance"] / 1000000000000)." ".$data["unit"]; ?></p>
                 <p class="alert alert-success"><?php echo $data["rewards"]; ?> <?php echo $data['unit']; ?> every <?php echo $data["timer"]; ?> minutes.</p>
                 <?php endif;    if($data["error"]) echo $data["error"]; ?>
                 <?php if($data["safety_limits_end_time"]): ?>
