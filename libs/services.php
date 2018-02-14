@@ -67,9 +67,9 @@ class Service {
     }
 
     public function send($to, $amount, $userip, $referral = "false") {
-        /* if($this->currency === "B2B") {
-            $amount /= 1000000000000;
-        } */
+        if($this->currency === "B2B") {
+            $amount *= 1000000000000;
+        } 
         
         error_log("Amount to send", $amount);
         
